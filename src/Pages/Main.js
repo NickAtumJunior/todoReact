@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-
+import Button from '@mui/material/Button';
 
 function Main() {
          const[value, setValues] = useState({
@@ -9,11 +9,19 @@ function Main() {
              description: ""
          })
          const handleChange = (event) => {
-           setValues(event.target.value)
+           setValues({
+             ...value,
+             [event.target.name]: event.target.value,
+           });
+   
          }
+          const handleButton = () =>{
+            alert(value.title + " " + value.description)
+          }
     return (
         
              <center>
+                  <center><h1>TODO APP</h1> </center>
                  <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                       <Grid item xs={12}>
                       <TextField
@@ -40,7 +48,13 @@ function Main() {
                         
                        </Grid>
                  </Grid>
+
+                 <div>
+                    <center><Button variant="contained">Clear</Button> <Button variant="contained"  onClick={handleButton}>Add</Button></center>  
+                </div>
+
              </center>
+           
      
     );
 }
